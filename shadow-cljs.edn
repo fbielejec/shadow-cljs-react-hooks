@@ -1,0 +1,18 @@
+{:source-paths ["src"]
+
+ :dependencies [[binaryage/devtools "0.9.10"]
+                [reagent "0.9.0-rc2"]]
+
+ :nrepl {:port 8777}
+
+ :builds {:app {:target :browser
+                :output-dir "public/js/compiled"
+                :asset-path "/js/compiled"
+                :modules {:main {:entries [hooks.core]}}
+                :compiler-options {:optimizations :none}
+                :closure-defines {hooks.core/environment "dev"}
+                :devtools {:http-root "public"
+                           :http-port 4040
+                           :before-load hooks.core/stop
+                           :after-load hooks.core/rerender
+                           :preloads [devtools.preload]}}}}
